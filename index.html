@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mentoria Estratégica | Complexo Solar Macau</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#050505;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+.bg-overlay{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top right, rgba(255,191,0,0.15), transparent 25%),
+    radial-gradient(circle at bottom left, rgba(255,215,0,0.08), transparent 25%),
+    linear-gradient(to bottom, #050505, #0b0b0b);
+    z-index:-2;
+}
+
+.grid{
+    position:fixed;
+    inset:0;
+    background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size:60px 60px;
+    z-index:-1;
+    opacity:0.3;
+}
+
+/* NAVBAR */
+
+nav{
+    width:100%;
+    padding:25px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(15px);
+    background:rgba(0,0,0,0.35);
+    border-bottom:1px solid rgba(255,215,0,0.08);
+}
+
+.logo{
+    font-size:1.3rem;
+    font-weight:800;
+    color:#d4af37;
+    letter-spacing:1px;
+}
+
+.nav-btn{
+    padding:14px 28px;
+    border-radius:50px;
+    text-decoration:none;
+    background:linear-gradient(135deg,#d4af37,#ffdd73);
+    color:#000;
+    font-weight:700;
+    transition:0.3s;
+    box-shadow:0 0 25px rgba(212,175,55,0.3);
+}
+
+.nav-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 35px rgba(212,175,55,0.5);
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:160px 8% 100px;
+    position:relative;
+}
+
+.hero-content{
+    max-width:950px;
+    text-align:center;
+}
+
+.tag{
+    display:inline-block;
+    padding:10px 18px;
+    border:1px solid rgba(212,175,55,0.25);
+    background:rgba(212,175,55,0.08);
+    border-radius:50px;
+    color:#d4af37;
+    font-size:0.9rem;
+    margin-bottom:30px;
+    backdrop-filter:blur(10px);
+}
+
+.hero h1{
+    font-size:4.5rem;
+    line-height:1.05;
+    font-weight:900;
+    margin-bottom:30px;
+    background:linear-gradient(to right,#ffffff,#d4af37);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    font-size:1.3rem;
+    line-height:1.7;
+    color:#cfcfcf;
+    margin-bottom:45px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+/* BOTÕES */
+
+.btn-primary{
+    padding:20px 40px;
+    border-radius:60px;
+    text-decoration:none;
+    background:linear-gradient(135deg,#d4af37,#ffdc6a);
+    color:#000;
+    font-weight:800;
+    font-size:1rem;
+    transition:0.3s;
+    box-shadow:0 0 40px rgba(212,175,55,0.35);
+}
+
+.btn-primary:hover{
+    transform:translateY(-4px) scale(1.02);
+}
+
+.btn-whatsapp{
+    padding:20px 40px;
+    border-radius:60px;
+    text-decoration:none;
+    background:linear-gradient(135deg,#25D366,#1ebe5d);
+    color:#fff;
+    font-weight:800;
+    font-size:1rem;
+    transition:0.3s;
+    box-shadow:0 0 35px rgba(37,211,102,0.35);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.btn-whatsapp:hover{
+    transform:translateY(-4px) scale(1.02);
+    box-shadow:0 0 45px rgba(37,211,102,0.5);
+}
+
+/* SECTIONS */
+
+section{
+    padding:120px 8%;
+}
+
+.section-title{
+    font-size:3rem;
+    margin-bottom:25px;
+    font-weight:900;
+    background:linear-gradient(to right,#fff,#d4af37);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.section-subtitle{
+    color:#b8b8b8;
+    max-width:800px;
+    line-height:1.8;
+    margin-bottom:70px;
+    font-size:1.1rem;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,215,0,0.08);
+    border-radius:28px;
+    padding:40px;
+    transition:0.4s;
+    backdrop-filter:blur(12px);
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background:linear-gradient(to right,#d4af37,transparent);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(212,175,55,0.35);
+    box-shadow:0 0 40px rgba(212,175,55,0.08);
+}
+
+.card h3{
+    font-size:1.4rem;
+    margin-bottom:18px;
+    color:#fff;
+}
+
+.card p{
+    color:#b8b8b8;
+    line-height:1.8;
+}
+
+/* AUTHORITY */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    margin-top:50px;
+}
+
+.stat{
+    padding:45px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(212,175,55,0.1);
+    text-align:center;
+}
+
+.stat h2{
+    font-size:3rem;
+    color:#d4af37;
+    margin-bottom:12px;
+}
+
+.stat span{
+    color:#bdbdbd;
+}
+
+/* VISUAL */
+
+.visual-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.visual-card{
+    height:320px;
+    border-radius:30px;
+    overflow:hidden;
+    position:relative;
+    border:1px solid rgba(212,175,55,0.08);
+}
+
+.visual-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.6s;
+    filter:brightness(0.7);
+}
+
+.visual-card:hover img{
+    transform:scale(1.08);
+}
+
+.visual-card::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+}
+
+.visual-card span{
+    position:absolute;
+    bottom:25px;
+    left:25px;
+    z-index:2;
+    font-weight:700;
+    font-size:1.1rem;
+}
+
+/* FINAL CTA */
+
+.final-cta{
+    text-align:center;
+    padding:160px 8%;
+}
+
+.final-cta h2{
+    font-size:4rem;
+    line-height:1.2;
+    margin-bottom:30px;
+    font-weight:900;
+}
+
+.final-cta p{
+    color:#c2c2c2;
+    max-width:750px;
+    margin:0 auto 50px;
+    line-height:1.9;
+    font-size:1.15rem;
+}
+
+/* FOOTER */
+
+footer{
+    padding:50px 8%;
+    border-top:1px solid rgba(255,255,255,0.08);
+    text-align:center;
+    color:#777;
+    font-size:0.95rem;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:2.8rem;
+    }
+
+    .section-title{
+        font-size:2.2rem;
+    }
+
+    .final-cta h2{
+        font-size:2.5rem;
+    }
+
+    .hero p{
+        font-size:1.05rem;
+    }
+
+    nav{
+        padding:20px 5%;
+    }
+
+    section{
+        padding:90px 5%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg-overlay"></div>
+<div class="grid"></div>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        COMPLEXO SOLAR MACAU
+    </div>
+
+    <a href="https://payfast.greenn.com.br/bw4dtne" class="nav-btn">
+        Entrar Agora
+    </a>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="tag">
+            MENTORIA ESTRATÉGICA • ENERGIA SOLAR • VISÃO DE MERCADO
+        </div>
+
+        <h1>
+            Pare de pensar pequeno.<br>
+            Entre no mercado de energia solar com visão estratégica.
+        </h1>
+
+        <p>
+            Mentoria estratégica baseada na construção real do projeto
+            Complexo Solar Macau. Posicionamento, estrutura e mentalidade
+            para quem quer jogar no mercado bilionário da energia renovável.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="https://payfast.greenn.com.br/bw4dtne" class="btn-primary">
+                Quero entrar agora
+            </a>
+
+            <a href="https://wa.me/556696612414" target="_blank" class="btn-whatsapp">
+                Falar no WhatsApp
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- AUTHORITY -->
+
+<section>
+
+    <h2 class="section-title">
+        Construído com visão de mercado real.
+    </h2>
+
+    <p class="section-subtitle">
+        Isso não é uma mentoria criada para vender promessas.
+        É um posicionamento estratégico baseado na construção
+        de um projeto real dentro do mercado de energia solar.
+    </p>
+
+    <div class="stats">
+
+        <div class="stat">
+            <h2>R$100M</h2>
+            <span>Valuation estimado do projeto Complexo Solar Macau</span>
+        </div>
+
+        <div class="stat">
+            <h2>R$14M</h2>
+            <span>Fase inicial de estruturação e expansão estratégica</span>
+        </div>
+
+        <div class="stat">
+            <h2>CEO Mindset</h2>
+            <span>Posicionamento de construção e visão de longo prazo</span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DOR -->
+
+<section>
+
+    <h2 class="section-title">
+        A maioria nunca entra no jogo.
+    </h2>
+
+    <p class="section-subtitle">
+        Enquanto o mercado de energia cresce bilhões todos os anos,
+        milhares continuam presos consumindo conteúdo sem direção.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Falta de visão estratégica</h3>
+            <p>
+                Muitos sabem que energia solar é o futuro,
+                mas não conseguem enxergar como se posicionar
+                de forma inteligente no mercado.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Execução travada</h3>
+            <p>
+                Consomem vídeos, cursos e informações diariamente,
+                mas continuam sem estrutura e sem movimento real.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Posicionamento fraco</h3>
+            <p>
+                Sem autoridade, sem direção e sem mentalidade
+                de construção, acabam ficando invisíveis no mercado.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SOLUÇÃO -->
+
+<section>
+
+    <h2 class="section-title">
+        O que a mentoria entrega.
+    </h2>
+
+    <p class="section-subtitle">
+        A proposta não é ensinar apenas teoria.
+        É desenvolver visão de construção, posicionamento
+        e direção estratégica dentro do mercado de energia renovável.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Visão Estratégica</h3>
+            <p>
+                Aprenda a pensar como quem constrói projetos
+                grandes e relevantes dentro do setor energético.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Posicionamento Premium</h3>
+            <p>
+                Descubra como gerar autoridade, percepção de valor
+                e imagem forte no mercado.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Mentalidade de Construção</h3>
+            <p>
+                Desenvolva a mentalidade necessária para sair do consumo
+                e entrar na execução estratégica.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Direção de Mercado</h3>
+            <p>
+                Entenda oportunidades, expansão e posicionamento
+                dentro de um dos mercados que mais crescem no mundo.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- VISUAL -->
+
+<section>
+
+    <h2 class="section-title">
+        Energia. Estrutura. Expansão.
+    </h2>
+
+    <p class="section-subtitle">
+        Um ecossistema construído para transmitir visão,
+        inovação e autoridade no mercado de energia renovável.
+    </p>
+
+    <div class="visual-grid">
+
+        <div class="visual-card">
+            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1600&auto=format&fit=crop">
+            <span>Painéis Solares Estratégicos</span>
+        </div>
+
+        <div class="visual-card">
+            <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1600&auto=format&fit=crop">
+            <span>Infraestrutura de Expansão</span>
+        </div>
+
+        <div class="visual-card">
+            <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=1600&auto=format&fit=crop">
+            <span>Mercado Bilionário em Crescimento</span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA FINAL -->
+
+<section class="final-cta">
+
+    <h2>
+        Ou você continua assistindo o mercado crescer…
+        <br><br>
+        Ou entra no jogo.
+    </h2>
+
+    <p>
+        A próxima geração de empresários da energia renovável
+        será construída agora. O mercado já começou a se mover.
+        A pergunta é: você vai assistir ou se posicionar?
+    </p>
+
+    <a href="https://payfast.greenn.com.br/bw4dtne" class="btn-primary">
+        QUERO FAZER PARTE
+    </a>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    © 2026 Sérgio Elias - Mentoria Estratégica — Todos os direitos reservados.
+</footer>
+
+</body>
+          </html>
